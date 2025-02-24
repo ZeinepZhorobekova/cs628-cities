@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Cities from "./pages/Cities";
+import AddCity from "./pages/AddCity";
+import CityDetails from "./components/CityDetails";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = () => {
+    return (
+    <Router>
+       <div>
+          <nav>
+            <Link to="/cities">Cities List</Link> | <Link to="/add-city">Add City</Link>
+                </nav>
+            <Routes>
+            <Route path="/" element={<Cities />} />
+          <Route path="/cities" element={<Cities />}>
+              <Route path=":id" element={<CityDetails />} />
+            </Route>
+              <Route path="/add-city" element={<AddCity />} />
+              </Routes>
     </div>
-  );
-}
-
+        </Router>
+    );
+};
 export default App;
